@@ -2,13 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="captchaService" class="com.octo.captcha.service.multitype.GenericManageableCaptchaService">
+    <bean id="captchaService" class="com.octo.captcha.service.multitype.GenericManageableCaptchaService" scope="singleton">
+        <description>验证码服务</description>
         <constructor-arg index="0" ref="imageEngine"/>
-        <constructor-arg type="int" index="1" value="180"/>
-        <constructor-arg type="int" index="2" value="100000"/>
+        <constructor-arg type="int" index="1" value="180"/><!--超时时间 秒-->
+        <constructor-arg type="int" index="2" value="100000"/><!--最大并发数-->
     </bean>
 
     <bean id="imageEngine" class="com.octo.captcha.engine.GenericCaptchaEngine">
+        <description>图片引擎</description>
         <constructor-arg index="0">
             <list>
                 <ref bean="captchaFactory"/>
@@ -17,6 +19,7 @@
     </bean>
 
     <bean id="captchaFactory" class="com.octo.captcha.image.gimpy.GimpyFactory">
+        <description>验证码工厂</description>
         <constructor-arg>
             <ref bean="wordgen"/>
         </constructor-arg>
@@ -26,7 +29,7 @@
     </bean>
 
     <bean id="wordgen" class="com.octo.captcha.component.word.wordgenerator.RandomWordGenerator">
-        <!--可选字符-->
+        <description>文字产生器，提供了好几种实现，经过比较选用了这种</description>
         <constructor-arg>
             <value>
                 0123456789abcdefghijklmnopqrstuvwxyz
@@ -35,6 +38,7 @@
     </bean>
 
     <bean id="wordtoimage" class="com.octo.captcha.component.image.wordtoimage.ComposedWordToImage">
+        <description>图片生成器</description>
         <constructor-arg index="0">
             <ref bean="fontGenRandom"/>
         </constructor-arg>
@@ -99,7 +103,7 @@
         <!--文本混淆-->
         <constructor-arg index="3">
             <list>
-                <!--<ref bean="baffleDecorator"/>-->
+                <ref bean="baffleDecorator"/><!-- <ref bean="baffleDecorator"/>-->
             </list>
         </constructor-arg>
     </bean>
@@ -133,13 +137,13 @@
 
     <bean id="colorDimGrey" class="java.awt.Color">
         <constructor-arg type="int" index="0">
-            <value>105</value>
+            <value>64</value>
         </constructor-arg>
         <constructor-arg type="int" index="1">
-            <value>105</value>
+            <value>9</value>
         </constructor-arg>
         <constructor-arg type="int" index="2">
-            <value>105</value>
+            <value>9</value>
         </constructor-arg>
     </bean>
 </beans>

@@ -17,7 +17,8 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>
                 classpath:spring/spring-web.xml,
-                classpath:spring/spring-jcaptcha.xml
+                classpath:spring/spring-jcaptcha.xml,
+                classpath:spring/spring-kaptcha.xml
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -52,7 +53,7 @@
     </filter-mapping>
 
     <!-- 系统异常页面 -->
-    <error-page>
+   <!-- <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/jsp/error/error.jsp</location>
     </error-page>
@@ -71,5 +72,5 @@
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/WEB-INF/jsp/error/error.jsp</location>
-    </error-page>
+    </error-page>-->
 </web-app>

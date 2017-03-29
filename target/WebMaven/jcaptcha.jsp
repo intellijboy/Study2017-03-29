@@ -11,9 +11,9 @@
     <title>Jcaptcha测试</title>
 </head>
 <body>
-    <form>
+    <form action="/jcaptcha/login">
         <input type="text" id="captcha" name="captcha" maxlength="4" />
-        <img src="/third/captcha" onclick="this.src='/third/captcha?d='+new Date().getMilliseconds()"/>
+        <img src="/jcaptcha/code" onclick="this.src='/jcaptcha/code?d='+new Date().getMilliseconds()" style="width: 200px;height: 50px;"/>
         <input type="submit" value="提交">
     </form>
 </body>
