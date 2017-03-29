@@ -26,7 +26,7 @@ public class CodeServletControl {
         String authCode = AuthCodeUtil.getAuthCode();
         request.getSession().setAttribute("sessionCode", authCode);    //将验证码保存到session中，便于以后验证
         try {
-            //发送图片
+            //发送图片9
             ImageIO.write(AuthCodeUtil.getAuthImg(authCode), "JPEG", response.getOutputStream());
         } catch (IOException e){
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class CodeServletControl {
             ){
         String sessionCode =String.valueOf(request.getSession().getAttribute("sessionCode"));
         Map<String,String> resultMap = new HashMap<String,String>();
-        resultMap.put("user",userName);
+        resultMap.put("user",userName);//*
         resultMap.put("sessionCode",sessionCode);
         resultMap.put("userCode",userCode);
         if(userCode.equals(sessionCode)){
